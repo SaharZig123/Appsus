@@ -1,0 +1,12 @@
+
+.note-preview {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin: 1em;
+    width: 15em;
+    /* height: 3em; */
+    background-color: bisque; 
+}

@@ -1,38 +1,45 @@
 import { utilService } from './util-service.js';
 import { storageService } from './async-storage-service.js';
 
+let gId = 101;
 const notes = [
     {
-     id: "n101",
-     type: "note-txt",
-     isPinned: true,
-     info: {
-     txt: "Fullstack Me Baby!"
-     }
+        id: "n101",
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     },
     {
-     id: "n102",
-     type: "note-img",
-     info: {
-     url: "http://some-img/me",
-     title: "Bobi and Me"
-     },
-     style: {
-     backgroundColor: "#00d"
-     }
+        id: "n102",
+        type: "note-img",
+        info: {
+            url: "http://some-img/me",
+            title: "Bobi and Me"
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     },
     {
-     id: "n103",
-     type: "note-todos",
-     info: {
-     label: "Get my stuff together",
-     todos: [
-     { txt: "Driving liscence", doneAt: null },
-     { txt: "Coding power", doneAt: 187111111 }
-     ]
-     }
+        id: "n103",
+        type: "note-todos",
+        info: {
+            label: "Get my stuff together",
+            todos: [
+                { txt: "Driving liscence", doneAt: null },
+                { txt: "Coding power", doneAt: 187111111 }
+            ]
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     }
-    ];
+];
 
 const NOTES_KEY = 'notes';
 _createNotes()
@@ -45,11 +52,18 @@ export const noteService = {
     getEmptyNote,
     getById,
     _createNotes,
-    _createNote
+    _createNote,
+    changeNoteColor
 };
 
 function query() {
     return storageService.query(NOTES_KEY);
+}
+
+function changeNoteColor(note) {
+    let currNote = getById(note.id)
+    currNote.style.color = note.color;
+    save(currNote);
 }
 
 function remove(noteId) {
@@ -73,19 +87,31 @@ function getEmptyNote() {
     };
 }
 
-  function _createNotes() {
+function _createNotes() {
     let notes = utilService.loadFromStorage(NOTES_KEY);
     if (!notes || !notes.length) {
+        notes = [
+            _createNote('Buy pens'),
+            _createNote('Do yoga'),
+            _createNote('Dont forget to breath'),
+            _createNote('Go on the light road')
+        ]
         utilService.saveToStorage(NOTES_KEY, notes);
     }
     return notes;
-  }
-  
-  function _createNote() {
+}
+
+function _createNote(txt) {
     const note = {
-        id: utilService.makeId(),
-        vendor,
-        maxSpeed,
-    };
+        id: 'n' + gId++,
+        type: "note-txt",
+        isPinned: false,
+        info: {
+            txt: txt
+        },
+        style: {
+            color: 'red'
+        }
+    }
     return note;
-  }
+}

@@ -5,13 +5,12 @@ export default {
     template: `
         <ul class="note-list">
             <li v-for="note in notes" :key="note.id" class="note-preview" >
-            <router-link :to="'/note/'+note.id" >
+                <router-link :to="'/note/'+note.id" ></router-link>  
                 <note-preview :note="note" @click.native="select(note)"/> 
-            </router-link>  
             </li>
         </ul>
     `,
-   
+
     components: {
         notePreview
     }
