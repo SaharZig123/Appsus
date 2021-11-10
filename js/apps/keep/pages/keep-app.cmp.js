@@ -1,5 +1,5 @@
-import { noteService } from '../apps/keep/services/note-service.cmp.js'
-import noteList from '../apps/keep/cmps/note-list.cmp.js';
+import { noteService } from '../../../services/note-service.cmp.js'
+import noteList from '../cmps/note-list.cmp.js';
 
 
 export default {
@@ -23,8 +23,10 @@ export default {
     methods: {
         loadNotes() {
             noteService.query()
-                .then(notes => this.notes = notes)
-                console.log(this.notes);
+                .then(notes => {
+                    this.notes = notes
+                    console.log(this.notes);
+                })
         },
         // setFilter(filterBy) {
         //     this.filterBy = filterBy;

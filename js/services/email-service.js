@@ -7,6 +7,8 @@ _createEmails()
 
 export const emailService = {
     query,
+    _createEmail,
+    _createEmails
 };
 
 
@@ -38,6 +40,8 @@ function _createEmails() {
         emails.push(_createEmail('LALA', 'Hey Lala papa', 'naama123@gmail.com'))
         emails.push(_createEmail('Popi Kiki', 'mama papa tata', 'mama2@wowo'))
         emails.push(_createEmail('Loko Pokom', 'Sak kimhita nana', 'lolog@what.com'))
+        utilService.saveToStorage(EMAILS_KEY, emails);
+
     }
 }
 

@@ -1,28 +1,31 @@
-import { emailService } from '../email-service.js'
+import { emailService } from '../../../services/email-service.js'
 import emailList from '../cmps/email-list.cmp.js'
 
 
 export default {
     template: `
         <section class="emails-app">
-            <email-list {{emails}}/>
+            <email-list :emails="emails"/>
         </section>
     `,
 
     data() {
         return {
-            emails: null,
+            emails: [],
         }
     },
 
     created() {
-        this.loadEmails
+        this.loadEmails()
     },
 
     methods: {
         loadEmails() {
             emailService.query()
-            then(emails => this.emails = emails)
+            .then(emails => {
+                this.emails = emails
+                console.log(this.emails)
+            })
         }
     },
 
