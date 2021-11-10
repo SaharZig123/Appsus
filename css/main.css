@@ -1,4 +1,5 @@
 @import url(./apps/email/email-list.css);
+@import url(./apps/keep/note-preview.css);
 
 *{
     box-sizing: border-box;
