@@ -8,7 +8,8 @@ _createEmails()
 export const emailService = {
     query,
     _createEmail,
-    _createEmails
+    _createEmails,
+    getById
 };
 
 
@@ -49,4 +50,8 @@ function _createEmails() {
 const loggedinUser = {
     email: 'naamaSahar@appsus.com',
     fullname: 'Mahatma Appsus'
+}
+
+function getById(emailId) {
+    return storageService.get(EMAILS_KEY, emailId);
 }
