@@ -1,0 +1,17 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.app-header {
+    height: 5vh;
+    background-color: black;
+}
+.app-footer {
+    height: 5vh;
+    background-color: black;
+}
+
