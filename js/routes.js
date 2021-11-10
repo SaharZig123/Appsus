@@ -3,6 +3,7 @@ import appHome from './pages/app-home.cmp.js';
 // import noteDetails from './apps/keep/pages/note-details.cmp.js';
 import noteApp from './apps/keep/pages/keep-app.cmp.js'
 import emailsApp from '../js/apps/email/pages/emails-app.cmp.js'
+import emailsReading from './apps/email/pages/emails-reading.cmp.js'
 
 const routes = [
   {
@@ -24,8 +25,13 @@ const routes = [
   {
     path: '/email',
     component: emailsApp
-  }
- 
+  },
+  
+  {
+    path: '/email/:emailId',
+    component: emailsReading
+  },
+
 ]
 
 export const router = new VueRouter({ routes });

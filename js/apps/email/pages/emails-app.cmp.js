@@ -5,13 +5,13 @@ import emailList from '../cmps/email-list.cmp.js'
 export default {
     template: `
         <section class="emails-app">
-            <email-list :emails="emails"/>
+            <email-list @emailIsRead="emailIsRead" :emails="emails"/>
         </section>
     `,
 
     data() {
         return {
-            emails: [],
+            emails: null,
         }
     },
 
@@ -26,7 +26,13 @@ export default {
                 this.emails = emails
                 console.log(this.emails)
             })
+        },
+
+        emailIsRead(email){
+            console.log(this.emails[email])
         }
+
+    
     },
 
     components: {
