@@ -4,21 +4,18 @@ export default {
     template: `
     <section v-if="newEmail" class="new-mail-container">
 
-        <header>
+        <header class="compose-header">
             <h4>New message</h4>
+            <router-link to="/email">X</router-link>
         </header>
     
         <section   class="new-email">
-            <label for="">
-                to:
-                <input v-model="newEmail.to" type="email" class="to">  
-            </label>
 
-            <label >
-            subject:
-                <input v-model="newEmail.subject" type="text" class="subject">  
-            </label>
-            <textarea v-model="newEmail.body" name="email-body" id="email-body" cols="40" rows="10"></textarea>
+
+                <input v-model="newEmail.to" type="email" class="to" placeholder="To">  
+                <input v-model="newEmail.subject" type="text" class="subject" placeholder="Subject">  
+
+            <textarea v-model="newEmail.body" cols="40" rows="10"></textarea>
         </section>
     
         <section class="tools">

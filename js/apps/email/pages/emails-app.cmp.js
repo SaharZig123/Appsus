@@ -7,7 +7,7 @@ export default {
     template: `
         <section class="emails-app">
             <nav>
-            <router-link to="/email/new">Compose</router-link>
+            <router-link to="/email/new">Compose +</router-link>
             <router-link to="/email/sent">Sent</router-link>
             <unread-counter v-if="emails" :emails="emails"/>
             </nav>

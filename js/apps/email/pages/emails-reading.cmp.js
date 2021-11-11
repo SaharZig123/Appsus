@@ -6,6 +6,8 @@ export default {
     <section v-if="email" class="email-container">
 
     <router-link to="/email">X</router-link>
+    <router-link v-if="email.sent" to="/email/sent">Back</router-link>
+    
 
 
        <div class="subject-container">
@@ -13,7 +15,7 @@ export default {
        </div>
 
        <div class="email-details">
-           <h4 class="from">{{email.to}}</h4>
+           <h4 class="from">{{email.from}}</h4>
            <p class="date">{{email.sentAt}}</p>
        </div>
 

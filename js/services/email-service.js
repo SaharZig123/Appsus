@@ -16,6 +16,11 @@ export const emailService = {
 
 };
 
+const loggedinUser = {
+    email: 'naamaSahar@appsus.com',
+    fullname: 'Mahatma Appsus'
+}
+
 function query() {
     return storageService.query(EMAILS_KEY)
         .then(emails => {
@@ -26,14 +31,15 @@ function query() {
 
 
 
-function _createEmail(subject, body, to) {
+function _createEmail(subject, body, from) {
     const email = {
         id: utilService.makeId(),
         subject,
         body,
         isRead: false,
         sentAt: new Date(),
-        to,
+        from,
+        to:'naamaSahar@appsus.com',
         sent: false
     }
     return email
@@ -47,7 +53,8 @@ function getEmptyEmail() {
         isRead: false,
         sentAt: '',
         sent: true,
-        to: ''
+        to: '',
+        from:'naamaSahar@appsus.com'
     }
     return email
 }
@@ -66,10 +73,7 @@ function _createEmails() {
 }
 
 
-const loggedinUser = {
-    email: 'naamaSahar@appsus.com',
-    fullname: 'Mahatma Appsus'
-}
+
 
 function getById(emailId) {
     return storageService.get(EMAILS_KEY, emailId);

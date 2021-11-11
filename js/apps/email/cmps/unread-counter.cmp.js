@@ -4,7 +4,7 @@ export default {
     props: ['emails'],
     template: `
 <section class="unread-counter">
-<h2>{{unreadCount}}</h2>
+<h2>Unread: <span>{{unreadCount}}</span></h2>
 </section>
 `,
 
@@ -22,12 +22,12 @@ export default {
         unreadCounter() {
 
             console.log(this.emails)
-            for (let i = 0; i < this.emails.length; i++) {
-                if (!this.emails[i].isRead) this.unreadCount++
-            }
+            this.emails.forEach(email => {
+                if (!email.isRead) this.unreadCount++
+            })
         }
     }
-
-
-
 }
+
+
+
