@@ -2,5 +2,14 @@
     list-style: none;
     display:flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5px;
+    max-width: 980px;
+    margin: auto;
+}
+
+div.note-filter{
+    margin: auto;
+    max-width: 980px;
+    text-align: center;
+    font-size: 1.56rem;
 }
