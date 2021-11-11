@@ -3,30 +3,111 @@ export default {
     template: `
         <section class="new-note">
             <h3>Add a new note:</h3>
-            <form>
-                <select v-model="newNote.type" >
-                    <option value="note-txt">Text</option>
-                    <option value="note-img">Image</option>
-                    <option value="note-video">Video</option>
-                    <option value="note-todos">To Do List</option>
-                </select>
-                
-                <input v-if="newNote.type === 'note-txt'" v-model="newNote.info.txt" type="txt" placeholder="Write your note...">
-                <input v-if="newNote.type === 'note-img'" v-model="newNote.info.title" type="txt" placeholder="Give a title to your photo...">
-                <input v-if="newNote.type === 'note-img'" v-model="newNote.info.URL" type="txt" placeholder="Enter image URL...">
-                <input v-if="newNote.type === 'note-video'" v-model="newNote.info.URL" type="txt" placeholder="Enter video URL...">
-                <input v-if="newNote.type === 'note-todos'" v-model="newNote.info.txt" type="txt" placeholder="Enter comma separated list...">
-                <button>Save</button>
-            </form>
+            
+            <button @click="selectTxtNote()">TEXT</button>
+            <template  v-if="isTxt">
+                 <input type="txt" v-model="txt" placeholder="Write your note...">
+            </template>
+            
+            <button @click="selectImgNote()">IMAGE</button>
+            <template  v-if="isImg">
+                 <input type="txt" v-model="img.title" placeholder="Give a title to your photo...">
+                 <input type="txt" v-model="img.url" placeholder="Enter image URL...">
+            </template>
+            
+            <button @click="selectVideoNote()">VIDEO</button>
+            <template  v-if="isVideo">
+                 <input type="txt" v-model="video" placeholder="Enter video URL...">
+            </template>
+            
+            <button @click="selectTodosNote()">TO-DO-LIST</button>
+            <template v-if="isList">
+                 <input type="txt" v-model="list.title" placeholder="Enter list title...">
+                 <input type="txt" v-model="list.todos" placeholder="Enter comma separated list...">
+            </template>
+           
+            <button @click="addNote">Add!</button>
+
         </section>
     `,
     data() {
         return {
-            newNote: {
-                type: this.newNote.type
+            isTxt: false,
+            isImg: false,
+            isVideo: false,
+            isList: false,
+            txt: '',
+            img: {
+                title:'',
+                url:''
             },
+            video: '',
+            list: {
+                title:'',
+                todos:''
+            }
+
+
         };
     },
-    created() {
+    methods: {
+    selectTxtNote() {
+        this.isTxt = true;
+        console.log('texttttt')
+        this.isImg = false;
+        this.isVideo = false;
+        this.isList = false;
+    },
+    selectImgNote() {
+        this.isImg = true;
+        console.log('image new')
+        this.isTxt = false;
+        this.isVideo = false;
+        this.isList = false;
+    },
+    selectVideoNote() {
+        this.isVideo = true;
+        console.log('video new')
+        this.isImg = false;
+        this.isTxt = false;
+        this.isList = false;
+    },
+    selectTodosNote() {
+        this.isList-true;
+        console.log('list new')
+        this.isImg = false;
+        this.isVideo = false;
+        this.isTxt = false;
+
+    },
+    addNote() {
+        if (this.isTxt) {
+            console.log(this.txt)
+            this.isTxt=false;
+            const newNote = ['note-txt', this.txt]
+            this.$emit('newNote',newNote)
+
+        }
+        else if (this.isImg) {
+            this.isImg = false;
+            const newNote = ['note-img', this.img]
+            this.$emit('newNote',newNote)
+
+        }
+        else if (this.isVideo) {
+            this.isVideo = false;
+            const newNote = ['note-video', this.video]
+            this.$emit('newNote',newNote)
+
+        }
+        else if (this.isList) {
+            this.isList = false;
+            const newNote = ['note-todos', this.list]
+            this.$emit('newNote',newNote)
+
+        }
+        
     }
+}
+
 };

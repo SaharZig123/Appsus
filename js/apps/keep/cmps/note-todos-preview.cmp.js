@@ -7,7 +7,7 @@ export default {
         <div class="note-todos-preview note-preview " :style="{backgroundColor: currNote.style.color}">
             <section v-if="note.info">
             <h5>{{note.info.label}}</h5>
-                <ul v-for="todo,idx in todos" key="todoIdx">
+                <ul v-for="todo,idx in todos">
                     <li> 
                         <p :class="isDoneTodo">{{todo.txt}}</p>
                         <button class="delete-btn" @click="markDoneTodo(idx)">X</button>
@@ -32,10 +32,8 @@ export default {
     methods: {
        changeColor() {
         eventBus.$emit('changeColor', this.currNote );
-        console.log(this.currNote.style.color);
        },
        markDoneTodo(idx) {
-           console.log(idx)
             this.isDone=!this.isDone;
             if (this.isDone) this.currNote.info.todos[idx].doneAt = new Date();
             else this.currNote.info.todos[idx].doneAt = null;

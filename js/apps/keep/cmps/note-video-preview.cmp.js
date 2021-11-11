@@ -26,7 +26,6 @@ export default {
     methods: {
        changeColor() {
         eventBus.$emit('changeColor', this.currNote );
-        console.log(this.currNote.style.color);
        }
     }
 }

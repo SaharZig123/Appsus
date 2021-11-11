@@ -9,7 +9,7 @@ export default {
     name: 'keep-app',
     template: `
         <section class="keep-app">
-            <new-note></new-note>
+            <new-note @newNote="addNote"></new-note>
             <note-filter @filtered="setFilter" />
             <note-list :notes="notesToShow"></note-list>
         </section>
@@ -45,10 +45,19 @@ export default {
         },
         markDone() {
             noteService.markDoneTodo(note)
+        },
+        addNote(newNote) {
+            const note = noteService.getEmptyNote(...newNote);
+            console.log(note)
+            noteService.save(note);
+            this.loadNotes();
         }
-
-
     },
+
+    watch: {
+   
+    },
+    
     
     computed: {
         notesToShow() {
