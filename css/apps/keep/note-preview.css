@@ -6,7 +6,40 @@
     justify-content: center;
     font-size: 1.2rem;
     margin: 1em;
-    width: 15em;
-    /* height: 3em; */
-    background-color: bisque; 
+    min-width: 15em;
+    border-radius:10px;
+}
+
+/* .note-txt-preview {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin: 1em;
+    min-width: 15em;   
+}
+
+.note-img-preview {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin: 1em;
+    min-width: 15em; 
+} */
+
+.delete-btn {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.active {
+    text-decoration: none;
+}
+
+.done {
+    text-decoration:line-through;
 }

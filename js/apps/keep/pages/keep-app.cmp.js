@@ -1,13 +1,15 @@
 import { noteService } from '../../../services/note-service.cmp.js'
 import noteList from '../cmps/note-list.cmp.js';
 import noteFilter from '../cmps/note-filter.cmp.js';
+import newNote from '../cmps/new-note.cmp.js';
 import { eventBus } from '../../../services/event-bus-service.js';
 
 
 export default {
+    name: 'keep-app',
     template: `
         <section class="keep-app">
-            <h1>Keep App!</h1>
+            <new-note></new-note>
             <note-filter @filtered="setFilter" />
             <note-list :notes="notesToShow"></note-list>
         </section>
@@ -17,12 +19,13 @@ export default {
             notes: noteService.query(),
             filterBy: null,
             selectedNote: null
-            // noteColor: ''
         };
     },
     created() {
         this.loadNotes()
         eventBus.$on('changeColor', this.changeColor)
+        eventBus.$on('markDone', this.markDoneTodo)
+
         
     },
 
@@ -39,6 +42,9 @@ export default {
         },
         changeColor(note) {
             noteService.changeNoteColor(note)
+        },
+        markDone() {
+            noteService.markDoneTodo(note)
         }
 
 
@@ -50,7 +56,9 @@ export default {
             const { txt } = this.filterBy;
             const searchStr = txt.toLowerCase();
             const notesToShow = this.notes.filter(note => {
-                return note.info.txt.toLowerCase().includes(searchStr)
+                return note.info.txt.toLowerCase().includes(searchStr) || 
+                        note.info.label.toLowerCase().includes(searchStr) 
+                        // || note.info.todos.toLowerCase().includes(searchStr) 
             });
             return notesToShow;
         }
@@ -59,7 +67,8 @@ export default {
     
     components: {
         noteList,
-        noteFilter
+        noteFilter,
+        newNote
     }
 };
 
