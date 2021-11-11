@@ -17,12 +17,12 @@ body {
 
 @font-face {
     font-family: 'Nunito-bold';
-    src: url(/Appsus/font/Nunito-Bold.ttf)
+    src: url(/font/Nunito-ExtraBold.ttf)
 }
 
 @font-face {
     font-family: 'Nunito-regular';
-    src: url(/Appsus/font/Nunito-Regular.ttf)
+    src: url(/font/Nunito-Regular.ttf)
 }
 
 /* header */
