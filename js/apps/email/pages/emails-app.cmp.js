@@ -1,11 +1,17 @@
 import { emailService } from '../../../services/email-service.js'
 import emailList from '../cmps/email-list.cmp.js'
+import unreadCounter from '../cmps/unread-counter.cmp.js'
 
 
 export default {
     template: `
         <section class="emails-app">
-            <email-list @emailIsRead="emailIsRead" :emails="emails"/>
+            <nav>
+            <router-link to="/email/new">Compose</router-link>
+            <router-link to="/email/sent">Sent</router-link>
+            <unread-counter v-if="emails" :emails="emails"/>
+            </nav>
+            <email-list v-if="emails"  @emailIsRead="emailIsRead" :emails="emails"/>
         </section>
     `,
 
@@ -22,20 +28,24 @@ export default {
     methods: {
         loadEmails() {
             emailService.query()
-            .then(emails => {
-                this.emails = emails
-                console.log(this.emails)
-            })
+                .then(emails => this.emails = emails.filter(email => { return !email.sent }))
         },
 
-        emailIsRead(email){
-            console.log(this.emails[email])
+        emailIsRead(emailId) {
+            const idx = this.emails.findIndex(email => email.id === emailId);
+            this.emails[idx].isRead = true
+            emailService.save(this.emails[idx])
         }
 
-    
+
+    },
+
+    computed: {
+
     },
 
     components: {
-        emailList
+        emailList,
+        unreadCounter
     }
 }

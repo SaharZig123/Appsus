@@ -3,7 +3,10 @@ import { emailService } from '../../../services/email-service.js'
 
 export default {
     template: `
-    <section class="email-container">
+    <section v-if="email" class="email-container">
+
+    <router-link to="/email">X</router-link>
+
 
        <div class="subject-container">
          <h3 class="email-subject">{{email.subject}}</h3>
@@ -23,7 +26,7 @@ export default {
 
     data() {
         return {
-            email: {},
+            email: null,
             // nextEmailId: null
         }
     },
@@ -34,7 +37,7 @@ export default {
     },
 
     created() {
-        
+
     },
 
     watch: {
@@ -42,8 +45,8 @@ export default {
             handler() {
                 const { emailId } = this.$route.params;
                 emailService.getById(emailId)
-                    .then(email => {this.email = email
-                        console.log(this.email)
+                    .then(email => {
+                        this.email = email
                     });
             },
             immediate: true

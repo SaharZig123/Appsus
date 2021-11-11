@@ -5,21 +5,18 @@ export default {
     template: `
     <section class="email-list">
         <ul>
-            <li v-for="email in emails" :key="email.id" class="email-preview-container">
-                <input type="checkbox">
-                <section  @click="openEmail(email)">
-                    <emails-preview :email="email"  ></emails-preview>
-                </section>
+            <li v-for="email in emails" :key="email.id" :class="{isRead : email.isRead}" class="email-preview-container">
+                    <emails-preview :email="email" @click.native="openEmail(email.id)" ></emails-preview>
             </li>
         </ul>
     </section>
     `,
 
 
-    methods:{
-        openEmail(email){
-            this.$emit('emailIsRead',email)
-            this.$router.push('/email/'+email.id);
+    methods: {
+        openEmail(emailId) {
+            this.$emit('emailIsRead', emailId)
+            this.$router.push('/email/' + emailId);
         }
     },
 

@@ -3,16 +3,18 @@ import { storageService } from './async-storage-service.js';
 
 
 const EMAILS_KEY = 'emails'
+
 _createEmails()
 
 export const emailService = {
     query,
     _createEmail,
     _createEmails,
-    getById
+    getById,
+    save,
+    getEmptyEmail,
+
 };
-
-
 
 function query() {
     return storageService.query(EMAILS_KEY)
@@ -21,6 +23,9 @@ function query() {
         })
 }
 
+
+
+
 function _createEmail(subject, body, to) {
     const email = {
         id: utilService.makeId(),
@@ -28,7 +33,21 @@ function _createEmail(subject, body, to) {
         body,
         isRead: false,
         sentAt: new Date(),
-        to
+        to,
+        sent: false
+    }
+    return email
+}
+
+function getEmptyEmail() {
+    const email = {
+        id: '',
+        subject: '',
+        body: '',
+        isRead: false,
+        sentAt: '',
+        sent: true,
+        to: ''
     }
     return email
 }
@@ -54,4 +73,10 @@ const loggedinUser = {
 
 function getById(emailId) {
     return storageService.get(EMAILS_KEY, emailId);
+}
+
+
+function save(email) {
+    if (email.id) return storageService.put(EMAILS_KEY, email);
+    else return storageService.post(EMAILS_KEY, email);
 }

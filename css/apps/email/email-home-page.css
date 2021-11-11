@@ -2,17 +2,26 @@
     max-width: 980px;
     margin: auto;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     border: 1px solid black;
     background-color: rgb(202, 202, 202);
+    padding-left: 10px;
+    padding-right: 10px;
 
 }
 
 .email-preview{
     display: flex;
     justify-content: space-between;
+    width:900px
 
 }
 
 .email-list ul{
     margin: 0;
+}
+
+.isRead{
+    background-color: burlywood;
 }
