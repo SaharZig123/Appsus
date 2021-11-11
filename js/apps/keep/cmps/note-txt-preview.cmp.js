@@ -1,19 +1,19 @@
 import { eventBus } from '../../../services/event-bus-service.js';
-import { noteService } from '../../../services/note-service.cmp.js';
 
 export default {
+    name: 'note-txt-preview',
     props: ['note'],
     template: `
-        <div class="note-preview" :style="{backgroundColor: note.style.color}">
+        <div class="note-txt-preview note-preview" :style="{backgroundColor: currNote.style.color}">
             <p v-if="note.info.txt">{{note.info.txt}}</p>
             <div class="actions">
-            <input type=color @input="changeColor()" v-model="currNote.color">
+            <input type=color @input="changeColor()" v-model="currNote.style.color">
             </div>
         </div>
     `,
     data() {
         return {
-            currNote: this.note.style.color
+            currNote: this.note
             }
         
     },
@@ -21,10 +21,8 @@ export default {
     methods: {
        changeColor() {
         eventBus.$emit('changeColor', this.currNote );
+        console.log(this.currNote.style.color);
        }
-    },
-    components: {
-    }
-    
+    }    
 
 }

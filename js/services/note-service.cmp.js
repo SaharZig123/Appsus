@@ -53,7 +53,8 @@ export const noteService = {
     getById,
     _createNotes,
     _createNote,
-    changeNoteColor
+    changeNoteColor,
+    markDoneTodo
 };
 
 function query() {
@@ -61,9 +62,21 @@ function query() {
 }
 
 function changeNoteColor(note) {
+    console.log(note)
     let currNote = getById(note.id)
-    currNote.style.color = note.color;
-    save(currNote);
+    currNote.then(currNote => {
+        currNote.style.color = note.style.color
+        save(currNote)
+    });
+}
+
+function markDoneTodo(note) {
+    let currNote = getById(note.id);
+    currNote.then(note => {
+        note.info.todos.map(todo => {
+            if (todo.doneAt !== currNote.info.todos.doneAt) currNote.info.todos.doneAt = todo.doneAt;
+        })
+        })
 }
 
 function remove(noteId) {
@@ -81,9 +94,6 @@ function getById(noteId) {
 
 function getEmptyNote() {
     return {
-        id: '',
-        vendor: '',
-        maxSpeed: 0
     };
 }
 
@@ -91,27 +101,49 @@ function _createNotes() {
     let notes = utilService.loadFromStorage(NOTES_KEY);
     if (!notes || !notes.length) {
         notes = [
-            _createNote('Buy pens'),
-            _createNote('Do yoga'),
-            _createNote('Dont forget to breath'),
-            _createNote('Go on the light road')
+            _createNote('note-txt', 'do something'),
+            _createNote('note-img', 'img/test.png', 'Hello World'),
+            _createNote('note-video', 'https://www.youtube.com/embed/tgbNymZ7vqY'),
+            _createNote('note-todos','i am a label', ['first todo','second todo']),
+            _createNote('note-todos','My list:', ['todo1','todo2','todo3']),
+            _createNote('note-img', 'img/test.png', 'Hello World')
+
         ]
         utilService.saveToStorage(NOTES_KEY, notes);
     }
     return notes;
 }
 
-function _createNote(txt) {
-    const note = {
+function _createNote(type,...restInfo) {
+    let note = {
         id: 'n' + gId++,
-        type: "note-txt",
+        type: type,
         isPinned: false,
-        info: {
-            txt: txt
-        },
         style: {
-            color: 'red'
+            color: 'lightblue'
+        },
+        info: {}
         }
+    if (type === 'note-txt') {
+        const [txt] = restInfo;
+        note.info = {txt: txt};
     }
+    else if (type === 'note-img') {
+        const [URL,txt] = restInfo;
+        note.info = {URL: URL, txt: txt};
+    }
+    else if (type === 'note-video') {
+        const [URL] = restInfo;
+        note.info = {URL: URL};
+    }
+    else if (type === 'note-todos') {
+        let [label,todos] = restInfo;
+        let currTodos = todos.map(todo => todo={
+            txt: todo,
+            doneAt: null
+        })
+        note.info = {label: label, todos: currTodos};
+    }
+    
     return note;
 }
