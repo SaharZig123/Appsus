@@ -1,7 +1,6 @@
 import { utilService } from './util-service.js';
 import { storageService } from './async-storage-service.js';
 
-let gId = 101;
 const notes = [
     {
         id: "n101",
@@ -54,7 +53,7 @@ export const noteService = {
     _createNotes,
     _createNote,
     changeNoteColor,
-    markDoneTodo
+    // markDoneTodo
 };
 
 function query() {
@@ -70,14 +69,15 @@ function changeNoteColor(note) {
     });
 }
 
-function markDoneTodo(note) {
-    let currNote = getById(note.id);
-    currNote.then(note => {
-        note.info.todos.map(todo => {
-            if (todo.doneAt !== currNote.info.todos.doneAt) currNote.info.todos.doneAt = todo.doneAt;
-        })
-    })
-}
+// function markDoneTodo(note) {
+//     // let currNote = getById(note.id);
+//     // currNote.then(note => {
+//     //     note.info.todos.map(todo => {
+//     //         if (todo.doneAt !== currNote.info.todos.doneAt) currNote.info.todos.doneAt = todo.doneAt;
+//     //     })
+//     // })
+//     save(note);
+// }
 
 function remove(noteId) {
     return storageService.remove(NOTES_KEY, noteId);
@@ -97,11 +97,10 @@ function _createNotes() {
     if (!notes || !notes.length) {
         notes = [
             _createNote('note-txt', 'do something'),
-            _createNote('note-img', 'img/test.png', 'Hello World'),
+            _createNote('note-img', {label: 'Hello World',url:'img/test.png'}),
             _createNote('note-video', 'https://www.youtube.com/embed/tgbNymZ7vqY'),
             _createNote('note-todos', 'i am a label', ['first todo', 'second todo']),
             _createNote('note-todos', 'My list:', ['todo1', 'todo2', 'todo3']),
-            _createNote('note-img', 'img/test.png', 'Hello World')
 
         ]
         utilService.saveToStorage(NOTES_KEY, notes);
@@ -137,7 +136,6 @@ function getEmptyNote(type, ...restInfo) {
     }
     createNoteInfo(note, ...restInfo);
 
-
     return note;
 }
 
@@ -147,8 +145,8 @@ function createNoteInfo(note, ...restInfo) {
         note.info = { txt: txt };
     }
     else if (note.type === 'note-img') {
-        const [URL, txt] = restInfo;
-        note.info = { URL: URL, txt: txt };
+        const [info] = restInfo;
+        note.info = info;
     }
     else if (note.type === 'note-video') {
         const [URL] = restInfo;

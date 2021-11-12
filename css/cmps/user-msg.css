@@ -1,0 +1,25 @@
+
+.user-msg {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    padding: 10px;
+}
+
+.success {
+    background-color: rgb(134, 247, 134);
+}
+
+.error {
+    background-color: red;
+}
+
+/* animations */
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}

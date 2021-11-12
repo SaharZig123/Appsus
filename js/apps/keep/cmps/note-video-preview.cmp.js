@@ -1,4 +1,4 @@
-import { eventBus } from '../../../services/event-bus-service.js';
+import editNote from './edit-note.cmp.js'
 
 export default {
     name: 'note-video-preview',
@@ -11,9 +11,8 @@ export default {
                     </iframe>
                 </div>
             </section>
-            <div class="actions">
-            <input type=color @input="changeColor()" v-model="currNote.style.color">
-            </div>
+            <edit-note :note="note"></edit-note>
+
         </div>
     `,
     data() {
@@ -23,9 +22,8 @@ export default {
         
     },
     
-    methods: {
-       changeColor() {
-        eventBus.$emit('changeColor', this.currNote );
-       }
+    components: {
+        editNote
     }
+    
 }

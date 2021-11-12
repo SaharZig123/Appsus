@@ -1,4 +1,5 @@
-import { eventBus } from '../../../services/event-bus-service.js';
+import editNote from './edit-note.cmp.js'
+
 
 export default {
     name: 'note-img-preview',
@@ -6,27 +7,21 @@ export default {
     template: `
         <div class="note-img-preview note-preview" :style="{backgroundColor: currNote.style.color}">
             <section v-if="note.info">
-                <img :src="note.info.URL">
-                <h2> {{note.info.txt}} </h2>
+                <img :src="note.info.url">
+                <h2 contenteditable> {{note.info.label}} </h2>
             </section>
-            <div class="actions">
-            <input type=color @input="changeColor()" v-model="currNote.style.color">
-            </div>
+            <edit-note :note="note"></edit-note>
         </div>
     `,
     data() {
         return {
             currNote: this.note
-            }
-        
+        }
     },
-    
-    methods: {
-       changeColor() {
-        eventBus.$emit('changeColor', this.currNote );
-        console.log(this.currNote.style.color);
-       }
+
+    components: {
+        editNote
     }
-    
+
 
 }
