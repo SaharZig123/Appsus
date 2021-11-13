@@ -6,6 +6,7 @@
 @import url(./apps/email/sent-folder.css);
 @import url(./apps/keep/note-preview.css);
 @import url(./apps/keep/note-list.css);
+@import url(./apps/books/books.css);
 
 *{
     box-sizing: border-box;
@@ -14,7 +15,7 @@
 
 body {
     margin: 0;
-    background-color: whitesmoke;
+    background-color:rgb(228, 228, 228)
 }
 
 /* header */
@@ -22,7 +23,7 @@ body {
 .app-header {
     width: 100vw;
     height: 12vh;
-    background-color: whitesmoke;
+    background-color: #B5EAEA;
     border: gray 2px solid;
 }
 
@@ -54,7 +55,7 @@ body {
     bottom: 0px;
     width: 100%;
     height: 5vh;
-    background-color: rgb(172, 169, 169);
+    background-color: #F38BA0;
     text-align: center;
 }
 

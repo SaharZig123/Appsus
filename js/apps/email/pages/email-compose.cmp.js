@@ -1,4 +1,5 @@
 import { emailService } from '../../../services/email-service.js'
+import { eventBus } from '../../../services/event-bus-service.js';
 
 export default {
     template: `
@@ -6,11 +7,10 @@ export default {
 
         <header class="compose-header">
             <h4>New message</h4>
-            <router-link to="/email">X</router-link>
+            <button @click="close">X</button>
         </header>
     
         <section   class="new-email">
-
 
                 <input v-model="newEmail.to" type="email" class="to" placeholder="To">  
                 <input v-model="newEmail.subject" type="text" class="subject" placeholder="Subject">  
@@ -31,13 +31,13 @@ export default {
 
     data() {
         return {
-            newEmail: null
+            newEmail: null,
+            composeShowen:true
         }
     },
 
     created() {
         this.newEmail = emailService.getEmptyEmail()
-        console.log(this.newEmail)
     },
 
     methods: {
@@ -46,8 +46,15 @@ export default {
             emailService.save(this.newEmail)
                 .then(newEmail => {
                     this.$router.push('/email')
+                    eventBus.$emit('loadIncoming')
                 });
+        },
+
+        close(){
+            this.$router.push('/email')
+            eventBus.$emit('loadIncoming')
         }
 
-    }
+    },
+
 }

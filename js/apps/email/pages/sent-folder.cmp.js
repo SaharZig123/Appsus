@@ -1,5 +1,6 @@
 import emailsPreview from '../cmps/emails-preview.cmp.js'
 import { emailService } from '../../../services/email-service.js'
+import { eventBus } from '../../../services/event-bus-service.js';
 
 
 export default {
@@ -17,12 +18,12 @@ export default {
 
     data() {
         return {
-            emailsSent: null
+            emailsSent: this.loadEmails()
         }
     },
 
     created() {
-        this.loadEmails()
+        
     },
 
     methods: {
@@ -39,11 +40,21 @@ export default {
 
         deleteEmail(emailId) {
             emailService.remove(emailId)
-                .then(() => this.loadEmails())
+                .then(() =>{
+                    const msg = {
+                        txt: 'Deleted succesfully',
+                        type: 'success'
+                    };
+                    eventBus.$emit('showMsg', msg);
+                    this.loadEmails()
+                })
 
         }
 
 
+    },
+
+    watch:{
     },
 
 

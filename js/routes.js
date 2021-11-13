@@ -5,6 +5,9 @@ import emailsApp from '../js/apps/email/pages/emails-app.cmp.js'
 import emailsReading from './apps/email/pages/emails-reading.cmp.js'
 import emailCompose from './apps/email/pages/email-compose.cmp.js'
 import sentEmails from './apps/email/pages/sent-folder.cmp.js'
+import bookApp from './apps/books/pages/book-app.cmp.js'
+import bookDetails from './apps/books/pages/book-details.cmp.js'
+
 
 const routes = [
   {
@@ -32,19 +35,17 @@ const routes = [
         component: sentEmails,
       },
     ],
-  
+  },
+  {
+    path: '/book',
+    component: bookApp
   },
 
-  // {
-  //   path: '/email/sent',
-  //   component: sentEmails
-  // },
+  {
+    path: '/book/:bookId',
+    component: bookDetails
+  },
 
-
-  // {
-  //   path: '/email/new',
-  //   component: emailCompose
-  // },
 
   {
     path: '/email/:emailId',
