@@ -5,7 +5,7 @@ export default {
     props: ['note'],
     template: `
             <div class="actions">
-                <input type=color @input="changeColor()" v-model="currNote.style.color">
+                <input type=color @input="changeColor()" value="#fffff" v-model="currNote.style.color">
                 <button @click="remove(note.id)" >X</button>
                 <button @click="duplicate(note)" >Duplicate</button>
             </div>
