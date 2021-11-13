@@ -112,7 +112,7 @@ function _createNotes() {
     if (!notes || !notes.length) {
         notes = [
             _createNote('note-txt', 'do something'),
-            _createNote('note-img', {label: 'Hello World',url:'img/test.png'}),
+            _createNote('note-img', {label: 'Hello World',url:'../img/test.png'}),
             _createNote('note-video', 'https://www.youtube.com/embed/tgbNymZ7vqY'),
             _createNote('note-todos', 'i am a label', ['first todo', 'second todo']),
             _createNote('note-todos', 'My list:', ['todo1', 'todo2', 'todo3']),

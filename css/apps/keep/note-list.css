@@ -3,8 +3,8 @@
     display:flex;
     flex-wrap: wrap;
     gap: 5px;
-    max-width: 980px;
-    margin: auto;
+    margin: 5em 15em;
+    justify-content: center;
 }
 
 div.note-filter{
@@ -14,8 +14,4 @@ div.note-filter{
     font-size: 1.56rem;
 }
 
-.new-note{
-    max-width: 980px;
-    margin: auto;
-    text-align: center;
-}
+

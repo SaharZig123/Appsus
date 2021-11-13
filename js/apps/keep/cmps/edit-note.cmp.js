@@ -4,10 +4,12 @@ export default {
     name: 'edit-note',
     props: ['note'],
     template: `
-            <div class="actions">
-                <input type=color @input="changeColor()" value="#fffff" v-model="currNote.style.color">
-                <button @click="remove(note.id)" >X</button>
-                <button @click="duplicate(note)" >Duplicate</button>
+            <div class="edit-note">
+                <hr>
+                <input type=color @input="changeColor()" v-model="currNote.style.color">
+                <i @click="remove(note.id)" class="far fa-trash-alt"></i>
+                <i @click="duplicate(note)" class="fas fa-copy"></i>
+                <i class="fas fa-thumbtack"></i>
             </div>
     `,
 

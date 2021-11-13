@@ -9,7 +9,7 @@ export default {
     props: ['notes'],
     template: `
         <ul class="note-list">
-            <li v-for="note in notes" :key="note.id" class="note-preview" >
+            <li v-for="note in notes" :key="note.id" >
                 <!-- <router-link :to="'/note/'+note.id" ></router-link>   -->
                 <note-txt-preview v-if="note.type==='note-txt'":note="note"/> 
                 <note-img-preview v-if="note.type==='note-img'" :note="note"/> 

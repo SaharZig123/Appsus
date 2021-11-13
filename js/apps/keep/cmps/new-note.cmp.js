@@ -4,10 +4,11 @@ export default {
         <section class="new-note">
             <h3>Add a new note:</h3>
             
-            <button @click="selectTxtNote()">TEXT</button>
-            <button @click="selectImgNote()">IMAGE</button>
-            <button @click="selectVideoNote()">VIDEO</button>
-            <button @click="selectTodosNote()">LIST</button>
+            <i @click="selectTxtNote()" class="far fa-edit"></i>
+            <i @click="selectImgNote()" class="far fa-image"></i>
+            <i @click="selectVideoNote()" class="far fa-file-video"></i>
+            <i @click="selectTodosNote()" class="far fa-list-alt"></i>
+
 
             <form>
                 <template  v-if="isTxt">
@@ -27,8 +28,9 @@ export default {
                     <input type="txt" v-model="list.title" placeholder="Enter list title...">
                     <input type="txt" v-model="list.todos" placeholder="Enter comma separated list...">
                 </template>
-           
-                <input type="submit" value="Add!" @click="addNote" @keyup.enter="submit">
+                
+                <i v-if="isTxt||isImg||isVideo||isList" @click="addNote()" @keyup.enter="addNote()" class="far fa-paper-plane"></i>
+                <!-- <input v-if="isTxt||isImg||isVideo||isList" type="submit" value="Add!" @click="addNote" @keyup.enter="submit"> -->
             </form>
 
         </section>
