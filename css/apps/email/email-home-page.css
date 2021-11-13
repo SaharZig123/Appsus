@@ -19,16 +19,54 @@
 .email-preview{
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 90%;
 
 }
 
-.email-list{
+.email-preview *:not(.preview-body){
+    width: 20%;
+    text-align: center;
+}
+
+.email-preview.preview-body{
+    width: 20%;
+    text-align: center;
+}
+
+.inbox{
     width: 80%;
+}
+
+.email-filter{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.email-list{
+height: 70vh;
+overflow: scroll;
+overflow-x: hidden;
 }
 
 .email-list ul{
     padding-inline-start: 0;
+}
+
+
+.email-list li{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.email-list-header{
+   display: flex;
+   justify-content: space-between;
+   padding: 10px;
+
 }
 
 .isRead{
@@ -40,7 +78,6 @@
     max-width: 980px;
     margin: auto;
     justify-content: space-between;
-    align-items: center;
 }
 
 .emails-app nav{
@@ -51,4 +88,8 @@
 
 .emails-app nav *{
     margin-bottom: 10px;
+}
+
+nav{
+    padding: 20px;
 }

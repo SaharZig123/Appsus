@@ -13,3 +13,9 @@ div.note-filter{
     text-align: center;
     font-size: 1.56rem;
 }
+
+.new-note{
+    max-width: 980px;
+    margin: auto;
+    text-align: center;
+}

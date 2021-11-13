@@ -15,12 +15,15 @@ export default {
                 <input v-model="newEmail.to" type="email" class="to" placeholder="To">  
                 <input v-model="newEmail.subject" type="text" class="subject" placeholder="Subject">  
 
-            <textarea v-model="newEmail.body" cols="40" rows="10"></textarea>
+                <textarea v-model="newEmail.body" cols="40" rows="10"> </textarea>
+                <section class="tools">
+                  <button @click="send" class="send">Send</button>
+                </section>
         </section>
+
+
     
-        <section class="tools">
-            <button @click="send" class="send">Send</button>
-        </section>
+
 
     </section>
 
@@ -39,7 +42,7 @@ export default {
 
     methods: {
         send() {
-            this.newEmail.sentAt = new Date()
+            this.newEmail.sentAt = new Date().toDateString()
             emailService.save(this.newEmail)
                 .then(newEmail => {
                     this.$router.push('/email')

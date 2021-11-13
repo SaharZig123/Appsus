@@ -20,8 +20,6 @@ export default {
 
     methods: {
         unreadCounter() {
-
-            console.log(this.emails)
             this.emails.forEach(email => {
                 if (!email.isRead) this.unreadCount++
             })

@@ -8,10 +8,12 @@ header.sent-email-header{
 
 .sent-email-list{
     max-width: 980px;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: auto;
+    margin:auto;
+
 }
 
 .sent-email-list ul{
@@ -19,9 +21,8 @@ header.sent-email-header{
     padding-inline-start:0
 }
 
-.sent-email-list li:first-child{
+.sent-email-list li{
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 10px;
 }
