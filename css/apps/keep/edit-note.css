@@ -56,3 +56,7 @@
 .edit-note hr {
     border: 1px solid gray;
 }
+
+.editable:hover {
+    border: 1px solid black;
+}

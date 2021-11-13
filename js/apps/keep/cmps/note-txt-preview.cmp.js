@@ -6,7 +6,7 @@ export default {
     props: ['note'],
     template: `
         <div class="note-txt-preview note-preview" :style="{backgroundColor: currNote.style.color}">
-            <p v-if="note.info.txt" contenteditable @blur="save($event.target)" >{{note.info.txt}}</p>
+            <p v-if="note.info.txt" contenteditable @blur="save($event.target)" class="editable">{{note.info.txt}}</p>
             <edit-note :note="note"></edit-note>
         </div>
     `,

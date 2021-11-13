@@ -4,10 +4,10 @@ export default {
         <section class="new-note">
             <h3>Add a new note:</h3>
             
-            <i @click="selectTxtNote()" class="far fa-edit"></i>
-            <i @click="selectImgNote()" class="far fa-image"></i>
-            <i @click="selectVideoNote()" class="far fa-file-video"></i>
-            <i @click="selectTodosNote()" class="far fa-list-alt"></i>
+            <i @click="selectTxtNote()" class="far fa-edit" title="Text"></i>
+            <i @click="selectImgNote()" class="far fa-image" title="Image"></i>
+            <i @click="selectVideoNote()" class="far fa-file-video" title="Video"></i>
+            <i @click="selectTodosNote()" class="far fa-list-alt" title="To-do list"></i>
 
 
             <form>

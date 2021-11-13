@@ -8,10 +8,10 @@ export default {
     template: `
         <div class="note-todos-preview note-preview " :style="{backgroundColor: currNote.style.color}">
             <section v-if="note.info">
-            <h5 contenteditable @blur="saveLabel($event.target)">{{note.info.label}}</h5>
+            <h5 contenteditable @blur="saveLabel($event.target)" class="editable">{{note.info.label}}</h5>
                 <ul v-for="(todo,idx) in todos">
                     <li> 
-                        <p contenteditable @blur="saveTodo($event.target,idx)">{{todo.txt}}</p>
+                        <p contenteditable @blur="saveTodo($event.target,idx)" class="editable">{{todo.txt}}</p>
                         <button class="note-delete-btn" @click="markDoneTodo(idx)">X</button>
                         <br>
                         <span v-if="todo.doneAt">Done at: {{todo.doneAt}}</span>

@@ -85,14 +85,14 @@ export default {
     computed: {
         notesToShow() {
             if (!this.filterBy) return this.notes;
-            const { txt } = this.filterBy;
-            const searchStr = txt.toLowerCase();
-            const notesToShow = this.notes.filter(note => {
+            console.log('filter')
+            const searchStr = this.filterBy.txt.toLowerCase();
+            const currNotes = this.notes.filter(note => {
+                console.log(note.info.txt, note.info.label, searchStr)
                 return note.info.txt.toLowerCase().includes(searchStr) ||
                     note.info.label.toLowerCase().includes(searchStr)
-                // || note.info.todos.toLowerCase().includes(searchStr) 
             });
-            return notesToShow;
+            return currNotes;
         }
 
     },
