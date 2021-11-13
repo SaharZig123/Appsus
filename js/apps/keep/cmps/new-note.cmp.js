@@ -5,28 +5,31 @@ export default {
             <h3>Add a new note:</h3>
             
             <button @click="selectTxtNote()">TEXT</button>
-            <template  v-if="isTxt">
-                 <input type="txt" v-model="txt" placeholder="Write your note...">
-            </template>
-            
             <button @click="selectImgNote()">IMAGE</button>
-            <template  v-if="isImg">
-                 <input type="txt" v-model="img.title" placeholder="Give a title to your photo...">
-                 <input type="txt" v-model="img.url" placeholder="Enter image URL...">
-            </template>
-            
             <button @click="selectVideoNote()">VIDEO</button>
-            <template  v-if="isVideo">
-                 <input type="txt" v-model="video" placeholder="Enter video URL...">
-            </template>
+            <button @click="selectTodosNote()">LIST</button>
+
+            <form @submit="addNote">
+                <template  v-if="isTxt">
+                     <input type="txt" v-model="txt" placeholder="Write your note...">
+                </template>
             
-            <button @click="selectTodosNote()">TO-DO-LIST</button>
-            <template v-if="isList">
-                 <input type="txt" v-model="list.title" placeholder="Enter list title...">
-                 <input type="txt" v-model="list.todos" placeholder="Enter comma separated list...">
-            </template>
+                <template  v-if="isImg">
+                    <input type="txt" v-model="img.label" placeholder="Give a title to your photo...">
+                    <input type="txt" v-model="img.url" placeholder="Enter image URL...">
+                </template>
+            
+                <template  v-if="isVideo">
+                    <input type="txt" v-model="video" placeholder="Enter video URL...">
+                </template>
+            
+                <template v-if="isList">
+                    <input type="txt" v-model="list.title" placeholder="Enter list title...">
+                    <input type="txt" v-model="list.todos" placeholder="Enter comma separated list...">
+                </template>
            
-            <button @click="addNote">Add!</button>
+                <!-- <input type="submit" value="Add!" @click="addNote" @keyup.enter="submit"> -->
+            </form>
 
         </section>
     `,
@@ -38,7 +41,7 @@ export default {
             isList: false,
             txt: '',
             img: {
-                title:'',
+                label:'',
                 url:''
             },
             video: '',
@@ -53,28 +56,24 @@ export default {
     methods: {
     selectTxtNote() {
         this.isTxt = true;
-        console.log('texttttt')
         this.isImg = false;
         this.isVideo = false;
         this.isList = false;
     },
     selectImgNote() {
         this.isImg = true;
-        console.log('image new')
         this.isTxt = false;
         this.isVideo = false;
         this.isList = false;
     },
     selectVideoNote() {
         this.isVideo = true;
-        console.log('video new')
         this.isImg = false;
         this.isTxt = false;
         this.isList = false;
     },
     selectTodosNote() {
         this.isList-true;
-        console.log('list new')
         this.isImg = false;
         this.isVideo = false;
         this.isTxt = false;

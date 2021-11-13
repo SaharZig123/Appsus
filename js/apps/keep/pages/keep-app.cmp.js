@@ -25,7 +25,8 @@ export default {
         this.loadNotes()
         eventBus.$on('changeColor', this.changeColor)
         eventBus.$on('markDone', this.markDoneTodo)
-
+        eventBus.$on('remove', this.removeNote)
+        eventBus.$on('duplicate', this.duplicateNote);
         
     },
 
@@ -51,14 +52,31 @@ export default {
             console.log(note)
             noteService.save(note);
             this.loadNotes();
+        },
+        removeNote(id) {
+            noteService.remove(id)
+                .then(() => {
+                    const msg = {
+                        txt: 'Deleted succesfully',
+                        type: 'success'
+                    };
+                    eventBus.$emit('showMsg', msg);
+                    this.notes = this.notes.filter(note => note.id !== id)
+                })
+                .catch(err => {
+                    console.log('err', err);
+                    const msg = {
+                        txt: 'Error. Please try later',
+                        type: 'error'
+                    };
+                    eventBus.$emit('showMsg', msg);
+                });
+        },
+        duplicateNote(note) {
+            this.addNote(note);
         }
     },
-
-    watch: {
-   
-    },
-    
-    
+     
     computed: {
         notesToShow() {
             if (!this.filterBy) return this.notes;

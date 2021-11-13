@@ -7,30 +7,18 @@
     font-size: 1.2rem;
     margin: 1em;
     min-width: 15em;
+    max-width: 20em;
     border-radius:10px;
 }
 
-/* .note-txt-preview {
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    justify-content: center;
-    font-size: 1.2rem;
-    margin: 1em;
-    min-width: 15em;   
+.note-img-preview img {
+    object-fit: contain;
+    width:100%;
+    border-radius: 5px;
 }
+ 
 
-.note-img-preview {
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    justify-content: center;
-    font-size: 1.2rem;
-    margin: 1em;
-    min-width: 15em; 
-} */
-
-.delete-btn {
+.note-delete-btn {
     background-color: transparent;
     border-color: transparent;
     box-shadow: none;
