@@ -1,9 +1,9 @@
 @font-face {
     font-family: 'Nunito-bold';
-    src: url(/font/Nunito-ExtraBold.ttf)
+    src: url(../../font/Nunito-ExtraBold.ttf);
 }
 
 @font-face {
     font-family: 'Nunito-regular';
-    src: url(/font/Nunito-Regular.ttf)
+    src: url(../../font/Nunito-Regular.ttf);
 }
