@@ -51,8 +51,11 @@ export default {
         addNote(newNote) {
             const note = noteService.getEmptyNote(...newNote);
             console.log(note)
-            noteService.save(note);
-            this.loadNotes();
+            noteService.save(note)
+               .then(()=>{
+                this.loadNotes();
+               })
+            
         },
         removeNote(id) {
             noteService.remove(id)
@@ -75,6 +78,7 @@ export default {
         },
         duplicateNote(note) {
             noteService.duplicate(note);
+            this.loadNotes()
         },
 
         updateTxt(note) {
@@ -99,7 +103,7 @@ export default {
     watch: {
         notes: {
             handler() {
-                console.log('notes has changed!');
+                // console.log('notes has changed!');
             },
             deep: true
         },
