@@ -9,11 +9,12 @@
     padding-left: 10px;
     padding-right: 10px;
     transition: 0.4s;
+    cursor: pointer;
 
 }
 
 .email-preview-container:hover{
-    background-color: rgb(202, 202, 202,0.7);
+    background-color: #FFBCBC;
 }
 
 .email-preview{

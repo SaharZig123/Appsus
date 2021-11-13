@@ -1,5 +1,4 @@
 
-
 export default {
     props: ['emails'],
     template: `
@@ -23,7 +22,14 @@ export default {
             this.emails.forEach(email => {
                 if (!email.isRead) this.unreadCount++
             })
-        }
+        },      
+    },
+
+    watch:{
+        emails: function() { 
+            this.unreadCount=0
+            this.unreadCounter()
+          }
     }
 }
 
