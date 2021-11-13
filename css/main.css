@@ -6,6 +6,7 @@
 @import url(./apps/email/sent-folder.css);
 @import url(./apps/keep/note-preview.css);
 @import url(./apps/keep/note-list.css);
+@import url(./apps/keep/edit-note.css);
 
 *{
     box-sizing: border-box;
@@ -80,4 +81,9 @@ strong{
 .bold{
     font-family:'Nunito-bold' ;
 }
+
+i {
+    cursor: pointer;
+}
+
 

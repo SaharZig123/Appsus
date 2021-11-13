@@ -1,0 +1,58 @@
+.new-note{
+    max-width: 980px;
+    margin: auto;
+    text-align: center;
+}
+
+.new-note h3 {
+    font-size: 1.5rem
+}
+
+.new-note i {
+    font-size: 2em;
+    margin: 1em;
+}
+.new-note i:hover {
+    color: gray;
+}
+
+.new-note input {
+    border-radius: 1em;
+    height: 4em;
+    width: 30em;
+}
+
+.note-filter input {
+    border-radius: 1em;
+    height: 3em;
+    width: 20em;
+}
+
+.note-filter button {
+    border-radius: 1em;
+    height: 3em;
+    font-family: 'Nunito-bold';
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.edit-note i {
+    font-size: 1em;
+    margin: 0.6em;
+    color: gray;
+}
+
+.edit-note i:hover {
+    color:black;
+}
+
+.edit-note input {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
+.edit-note hr {
+    border: 1px solid gray;
+}

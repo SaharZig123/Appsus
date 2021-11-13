@@ -2,6 +2,7 @@
 .note-preview {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items:center;
     justify-content: center;
     font-size: 1.2rem;
@@ -10,7 +11,13 @@
     max-width: 20em;
     border-radius:10px;
     padding: 3px;
+    text-align: center;
 }
+
+.note-preview:hover {
+    box-shadow: -1px -1px 16px 4px rgba(192,192,192,0.75);
+}
+
 
 .note-img-preview img {
     object-fit: contain;
