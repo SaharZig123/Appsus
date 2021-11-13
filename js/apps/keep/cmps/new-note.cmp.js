@@ -9,7 +9,7 @@ export default {
             <button @click="selectVideoNote()">VIDEO</button>
             <button @click="selectTodosNote()">LIST</button>
 
-            <form @submit="addNote">
+            <form>
                 <template  v-if="isTxt">
                      <input type="txt" v-model="txt" placeholder="Write your note...">
                 </template>
@@ -28,7 +28,7 @@ export default {
                     <input type="txt" v-model="list.todos" placeholder="Enter comma separated list...">
                 </template>
            
-                <!-- <input type="submit" value="Add!" @click="addNote" @keyup.enter="submit"> -->
+                <input type="submit" value="Add!" @click="addNote" @keyup.enter="submit">
             </form>
 
         </section>
@@ -46,7 +46,7 @@ export default {
             },
             video: '',
             list: {
-                title:'',
+                label:'',
                 todos:''
             }
 

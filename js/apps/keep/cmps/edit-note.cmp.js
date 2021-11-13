@@ -27,6 +27,16 @@ export default {
             eventBus.$emit('duplicate', note);
         },
 
-     }
+     },
+     watch: {
+        'currNote.info': {
+            handler() {
+                console.log('currNote has changed!');
+                eventBus.$emit('updateTxt', this.currNote);
+
+            },
+            deep: true
+        },
+    },
 
 }

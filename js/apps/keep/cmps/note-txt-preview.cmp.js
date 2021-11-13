@@ -1,3 +1,4 @@
+import { eventBus } from '../../../services/event-bus-service.js';
 import editNote from './edit-note.cmp.js'
 
 export default {
@@ -5,7 +6,7 @@ export default {
     props: ['note'],
     template: `
         <div class="note-txt-preview note-preview" :style="{backgroundColor: currNote.style.color}">
-            <p v-if="note.info.txt" contenteditable onblur="console.log(this.innerText)" >{{note.info.txt}}</p>
+            <p v-if="note.info.txt" contenteditable @blur="save($event.target)" >{{note.info.txt}}</p>
             <edit-note :note="note"></edit-note>
         </div>
     `,
@@ -17,6 +18,11 @@ export default {
 
     components: {
         editNote
+    },
+    methods: {
+        save(ev) {
+            this.currNote.info.txt = ev.innerText;
+        }
     }
 
 }

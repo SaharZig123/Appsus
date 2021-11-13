@@ -27,7 +27,8 @@ export default {
         eventBus.$on('markDone', this.markDoneTodo)
         eventBus.$on('remove', this.removeNote)
         eventBus.$on('duplicate', this.duplicateNote);
-        
+        eventBus.$on('updateTxt', this.updateTxt);
+
     },
 
     methods: {
@@ -73,25 +74,37 @@ export default {
                 });
         },
         duplicateNote(note) {
-            this.addNote(note);
-        }
+            noteService.duplicate(note);
+        },
+
+        updateTxt(note) {
+            noteService.updateTxt(note)
+        },
     },
-     
+
     computed: {
         notesToShow() {
             if (!this.filterBy) return this.notes;
             const { txt } = this.filterBy;
             const searchStr = txt.toLowerCase();
             const notesToShow = this.notes.filter(note => {
-                return note.info.txt.toLowerCase().includes(searchStr) || 
-                        note.info.label.toLowerCase().includes(searchStr) 
-                        // || note.info.todos.toLowerCase().includes(searchStr) 
+                return note.info.txt.toLowerCase().includes(searchStr) ||
+                    note.info.label.toLowerCase().includes(searchStr)
+                // || note.info.todos.toLowerCase().includes(searchStr) 
             });
             return notesToShow;
         }
 
     },
-    
+    watch: {
+        notes: {
+            handler() {
+                console.log('notes has changed!');
+            },
+            deep: true
+        },
+    },
+
     components: {
         noteList,
         noteFilter,

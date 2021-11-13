@@ -54,6 +54,8 @@ export const noteService = {
     _createNote,
     changeNoteColor,
     // markDoneTodo
+    updateTxt,
+    duplicate
 };
 
 function query() {
@@ -61,12 +63,25 @@ function query() {
 }
 
 function changeNoteColor(note) {
-    console.log(note)
     let currNote = getById(note.id)
     currNote.then(currNote => {
         currNote.style.color = note.style.color
         save(currNote)
     });
+}
+
+function updateTxt(note) {
+    console.log(note)
+    let currNote = getById(note.id)
+    currNote.then(currNote => {
+        currNote = note;
+        save(currNote)
+    });
+}
+
+function duplicate(note) {
+    note.id = '';
+    save(note);
 }
 
 // function markDoneTodo(note) {
