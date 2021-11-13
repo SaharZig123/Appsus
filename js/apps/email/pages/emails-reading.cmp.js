@@ -6,7 +6,7 @@ export default {
     <section v-if="email" class="email-container">
 
     <router-link to="/email">X</router-link>
-    <router-link v-if="email.sent" to="/email/sent">Back</router-link>
+
     
 
 
