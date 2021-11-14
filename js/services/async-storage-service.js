@@ -6,7 +6,8 @@ export const storageService = {
     post,
     put,
     remove,
-    postMany
+    postMany,
+    addToStart
 }
 
 function query(entityType) {
@@ -26,6 +27,26 @@ function post(entityType, newEntity) {
             entities.push(newEntity);
             _save(entityType, entities)
             return newEntity;
+        })
+}
+
+
+function addToStart(entityType, newEntity) {
+    return query(entityType)
+        .then(entities => {
+            if (!newEntity.isPinned) {
+                newEntity.isPinned = true;
+                const idx = entities.findIndex(entity => entity.id === newEntity.id);
+                entities.splice(idx, 1)
+                entities.unshift(newEntity);
+            } else {
+                newEntity.isPinned = false;
+                const idx = entities.findIndex(entity => entity.id === newEntity.id);
+                entities.splice(idx, 1)
+                entities.push(newEntity);
+            }
+            _save(entityType, entities)
+            return entities;
         })
 }
 

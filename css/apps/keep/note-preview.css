@@ -44,3 +44,15 @@
 .done {
     text-decoration:line-through;
 }
+.todo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.done-at {
+    font-size: 0.9rem;
+    font-style: italic;
+}
+.todo-label {
+    font-size: 1.4rem;
+}

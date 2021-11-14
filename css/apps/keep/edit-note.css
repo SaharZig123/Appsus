@@ -60,3 +60,7 @@
 .editable:hover {
     border: 1px solid black;
 }
+
+.pinned.pin {
+    color:red;
+}

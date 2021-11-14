@@ -9,7 +9,7 @@ export default {
                 <input type=color @input="changeColor()" v-model="currNote.style.color">
                 <i @click="remove(note.id)" class="far fa-trash-alt"></i>
                 <i @click="duplicate(note)" class="fas fa-copy"></i>
-                <i class="fas fa-thumbtack"></i>
+                <i @click="pinnedNote(note)" class="fas fa-thumbtack pin" :class="{pinned: note.isPinned}"></i>
             </div>
     `,
 
@@ -28,12 +28,14 @@ export default {
         duplicate(note) {
             eventBus.$emit('duplicate', note);
         },
+        pinnedNote(note) {
+            eventBus.$emit('pinned', note);
+        },
 
      },
      watch: {
         'currNote.info': {
             handler() {
-                console.log('currNote has changed!');
                 eventBus.$emit('updateTxt', this.currNote);
 
             },

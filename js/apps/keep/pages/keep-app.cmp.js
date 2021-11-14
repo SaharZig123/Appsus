@@ -24,10 +24,11 @@ export default {
     created() {
         this.loadNotes()
         eventBus.$on('changeColor', this.changeColor)
-        eventBus.$on('markDone', this.markDoneTodo)
         eventBus.$on('remove', this.removeNote)
         eventBus.$on('duplicate', this.duplicateNote);
         eventBus.$on('updateTxt', this.updateTxt);
+        eventBus.$on('pinned', this.pinnedNote);
+
 
     },
 
@@ -45,9 +46,7 @@ export default {
         changeColor(note) {
             noteService.changeNoteColor(note)
         },
-        markDone() {
-            noteService.markDoneTodo(note)
-        },
+       
         addNote(newNote) {
             const note = noteService.getEmptyNote(...newNote);
             console.log(note)
@@ -84,6 +83,10 @@ export default {
         updateTxt(note) {
             noteService.updateTxt(note)
         },
+        pinnedNote(note) {
+            noteService.setPinnedNote(note)
+            .then(notes => this.notes = notes);
+        }
     },
 
     computed: {

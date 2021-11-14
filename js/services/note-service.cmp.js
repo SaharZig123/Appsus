@@ -1,45 +1,6 @@
 import { utilService } from './util-service.js';
 import { storageService } from './async-storage-service.js';
 
-const notes = [
-    {
-        id: "n101",
-        type: "note-txt",
-        isPinned: true,
-        info: {
-            txt: "Fullstack Me Baby!"
-        },
-        style: {
-            backgroundColor: "#00d"
-        }
-    },
-    {
-        id: "n102",
-        type: "note-img",
-        info: {
-            url: "http://some-img/me",
-            title: "Bobi and Me"
-        },
-        style: {
-            backgroundColor: "#00d"
-        }
-    },
-    {
-        id: "n103",
-        type: "note-todos",
-        info: {
-            label: "Get my stuff together",
-            todos: [
-                { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 }
-            ]
-        },
-        style: {
-            backgroundColor: "#00d"
-        }
-    }
-];
-
 const NOTES_KEY = 'notes';
 _createNotes()
 
@@ -53,9 +14,9 @@ export const noteService = {
     _createNotes,
     _createNote,
     changeNoteColor,
-    // markDoneTodo
     updateTxt,
-    duplicate
+    duplicate,
+    setPinnedNote
 };
 
 function query() {
@@ -84,15 +45,9 @@ function duplicate(note) {
     save(note);
 }
 
-// function markDoneTodo(note) {
-//     // let currNote = getById(note.id);
-//     // currNote.then(note => {
-//     //     note.info.todos.map(todo => {
-//     //         if (todo.doneAt !== currNote.info.todos.doneAt) currNote.info.todos.doneAt = todo.doneAt;
-//     //     })
-//     // })
-//     save(note);
-// }
+function setPinnedNote(note) {
+    return storageService.addToStart(NOTES_KEY, note);
+}
 
 function remove(noteId) {
     return storageService.remove(NOTES_KEY, noteId);
@@ -114,8 +69,8 @@ function _createNotes() {
             _createNote('note-txt', 'do something'),
             _createNote('note-img', {label: 'Hello World',url:'../img/test.png'}),
             _createNote('note-video', 'https://www.youtube.com/embed/tgbNymZ7vqY'),
-            _createNote('note-todos', 'i am a label', ['first todo', 'second todo']),
-            _createNote('note-todos', 'My list:', ['todo1', 'todo2', 'todo3']),
+            _createNote('note-todos', {label:'i am a label',todos: ['first todo', 'second todo']}),
+            _createNote('note-todos', {label:'My list:', todos:['todo1', 'todo2', 'todo3']}),
 
         ]
         utilService.saveToStorage(NOTES_KEY, notes);
@@ -129,7 +84,7 @@ function _createNote(type, ...restInfo) {
         type: type,
         isPinned: false,
         style: {
-            color: 'lightblue'
+            color: '#fdfdc9'
         },
         info: {}
     }
@@ -145,7 +100,7 @@ function getEmptyNote(type, ...restInfo) {
         type: type,
         isPinned: false,
         style: {
-            color: 'lightblue'
+            color: '#fdfdc9'
         },
         info: {}
     }
@@ -168,11 +123,11 @@ function createNoteInfo(note, ...restInfo) {
         note.info = { URL: URL };
     }
     else if (note.type === 'note-todos') {
-        let [label, todos] = restInfo;
-        let currTodos = todos.map(todo => todo = {
+        let [info] = restInfo;        
+        let currTodos = info.todos.map(todo => todo = {
             txt: todo,
             doneAt: null
         })
-        note.info = { label: label, todos: currTodos };
+        note.info = { label: info.label, todos: currTodos };
     }
 }
